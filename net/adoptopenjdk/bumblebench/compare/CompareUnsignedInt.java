@@ -8,7 +8,7 @@ public final class CompareUnsignedInt extends MicroBench {
     private static final int A_VALUE = option("aValue", A_DEFAULT);
     private static final int B_VALUE = option("bValue", B_DEFAULT);
 
-    private static int value = 0;
+    private static volatile int value = 0;
 
     @Override
     protected long doBatch(long numIterations) throws InterruptedException {

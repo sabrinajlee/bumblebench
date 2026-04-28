@@ -8,7 +8,7 @@ public final class CompareUnsignedLong extends MicroBench {
     private static final long A_VALUE = option("aValue", A_DEFAULT);
     private static final long B_VALUE = option("bValue", B_DEFAULT);
 
-    private static long value = 0;
+    private static volatile long value = 0;
 
     @Override
     protected long doBatch(long numIterations) throws InterruptedException {
