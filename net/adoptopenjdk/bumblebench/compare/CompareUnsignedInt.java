@@ -17,7 +17,7 @@ public final class CompareUnsignedInt extends MicroBench {
     protected long doBatch(long numIterations) throws InterruptedException {
         for (long i = 0; i < numIterations; i++) {
             try {
-                res = Integer.compareUnsigned(a, b);
+                res = myCompareUnsigned(a, b);
                 if (res < -1 || res > 1){
                     throw new Exception("Returned value is not in range [-1,1]");
                 }
@@ -30,4 +30,8 @@ public final class CompareUnsignedInt extends MicroBench {
         }
         return numIterations;
     } 
+
+    public static final int myCompareUnsigned(int x, int y) {
+        return Integer.compare(x + Integer.MIN_VALUE, y + Integer.MIN_VALUE);
+    }
 }
