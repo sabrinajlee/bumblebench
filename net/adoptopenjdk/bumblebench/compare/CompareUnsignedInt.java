@@ -11,27 +11,22 @@ public final class CompareUnsignedInt extends MicroBench {
     private static volatile int b = option("b", B_DEFAULT);
 
     private static volatile int value = 0;
-    private static volatile int res = 0;
+   
 
     @Override
     protected long doBatch(long numIterations) throws InterruptedException {
         for (long i = 0; i < numIterations; i++) {
-            try {
-                res = myCompareUnsigned(a, b);
-                if (res < -1 || res > 1){
-                    throw new Exception("Returned value is not in range [-1,1]");
-                }
-                value += res;
-                a += A_INC;
-                b += B_INC;
-            } catch(Exception e) {
-                System.out.println(e.getMessage());
-            }
+            value += Integer.compareUnsigned(a, b);
+            
+	    a += A_INC;
+            b += B_INC;
+	    value += Integer.compareUnsigned(a, b);
+
         }
         return numIterations;
     } 
 
-    public static final int myCompareUnsigned(int x, int y) {
-        return Integer.compare(x + Integer.MIN_VALUE, y + Integer.MIN_VALUE);
-    }
+
+
+
 }
