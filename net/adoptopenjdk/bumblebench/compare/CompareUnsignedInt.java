@@ -4,9 +4,17 @@ import net.adoptopenjdk.bumblebench.core.MicroBench;
 
 public final class CompareUnsignedInt extends MicroBench {
     private static final int A_DEFAULT = 0x7FFFFFF0;
-    private static final int B_DEFAULT = 0x80000010;
+    private static final int B_DEFAULT = 0x7FFFFFF0;
     private static final int A_INC = 32;
-    private static final int B_INC = -32;
+    private static final int B_INC = 32;
+    // private static final int C_DEFAULT = 0x7FFFFFF0;
+    // private static final int D_DEFAULT = 0x80000010;
+    // private static final int C_INC = 32;
+    // private static final int D_INC = -32;
+    // private static final int E_DEFAULT = 0x7FFFFFF0;
+    // private static final int F_DEFAULT = 0x80000010;
+    // private static final int E_INC = 32;
+    // private static final int F_INC = -32;
     private static volatile int a = option("a", A_DEFAULT);
     private static volatile int b = option("b", B_DEFAULT);
 
