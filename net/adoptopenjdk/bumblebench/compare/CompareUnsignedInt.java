@@ -18,7 +18,11 @@ public final class CompareUnsignedInt extends MicroBench {
         int local_b = b; int local_b_inc = B_INC;
         int local_val = value;
         for (long i = 0; i < numIterations; i++) {
-            local_val += Integer.compareUnsigned(local_a_inc, local_b_inc);
+            local_val += Integer.compareUnsigned(local_a_inc, local_b_inc)
+	    + Integer.compareUnsigned(local_a, local_b-1)
+                   + Integer.compareUnsigned(local_a, local_b+1)
+                   + Integer.compareUnsigned(local_a+1, local_b)
+                   + Integer.compareUnsigned(local_a-1, local_b);
             local_a += local_a_inc;
             local_b += local_b_inc;
         }
