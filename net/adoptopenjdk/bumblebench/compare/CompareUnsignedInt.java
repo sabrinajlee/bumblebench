@@ -3,35 +3,45 @@ package net.adoptopenjdk.bumblebench.compare;
 import net.adoptopenjdk.bumblebench.core.MicroBench;
 
 public final class CompareUnsignedInt extends MicroBench {
-    private static final int A_DEFAULT = -1;
-    private static final int B_DEFAULT = 1;
-    private static final int A_INC = -5;
-    private static final int B_INC = 15;
-    private static volatile int a = option("a", A_DEFAULT);
-    private static volatile int b = option("b", B_DEFAULT);
-
+    // Diverse test values including edge cases to prevent JIT optimization
+    private static final int[] TEST_VALUES = {
+        0, 1, -1,
+        Integer.MIN_VALUE, Integer.MAX_VALUE,
+        0x7FFFFFFF, 0x80000000,
+        0x12345678, 0x87654321,
+        42, -42, 1000000, -1000000
+    };
+    
+    private static volatile int a = option("a", -1);
+    private static volatile int b = option("b", 1);
     private static volatile int value = 0;
 
     @Override
     protected long doBatch(long numIterations) throws InterruptedException {
-        int local_a = a; int local_a_inc = A_INC;
-        int local_b = b; int local_b_inc = B_INC;
+        int local_a = a;
+        int local_b = b;
         int local_val = value;
-        for (long i = 0; i < numIterations; i++) {
-            local_val += myCompareUnsigned(local_a_inc, local_b_inc)
-                        + myCompareUnsigned(local_a, local_b-1)
-                        + myCompareUnsigned(local_a, local_b+1)
-                        + myCompareUnsigned(local_a+1, local_b)
-                        + myCompareUnsigned(local_a-1, local_b);
-            local_a += local_a_inc;
-            local_b += local_b_inc;
+        
+        for (int i = 0; i < numIterations; i++) {
+            // Cycle through test values to get diverse comparisons
+            int val1 = TEST_VALUES[i % TEST_VALUES.length];
+            int val2 = TEST_VALUES[(i + 1) % TEST_VALUES.length];
+            
+            local_val += Integer.compareUnsigned(local_a, local_b)
+                        + Integer.compareUnsigned(val1, val2)
+                        + Integer.compareUnsigned(local_a, val1)
+                        + Integer.compareUnsigned(val2, local_b)
+                        + Integer.compareUnsigned(local_a + val1, local_b + val2);
+            
+            local_a += val1;
+            local_b += val2;
         }
-        a = local_a; b = local_b;
+        
+        a = local_a;
+        b = local_b;
         value = local_val;
+        
         return numIterations;
     }
 
-    public static final int myCompareUnsigned(int x, int y) {
-        return Integer.compare(x + Integer.MIN_VALUE, y + Integer.MIN_VALUE);
-    }
 }
