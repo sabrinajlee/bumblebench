@@ -30,8 +30,8 @@ public final class CompareUnsignedIntversion2 extends MicroBench {
             local_val += Integer.compareUnsigned(local_a, 12345)
                         + Integer.compareUnsigned(val1, 67890)
                         + Integer.compareUnsigned(local_b, 0)
-                        + Integer.compareUnsigned(val2, local_b)
-                        + Integer.compareUnsigned(local_a + val1, local_b + val2);
+                        + Integer.compareUnsigned(val2, 200)
+                        + Integer.compareUnsigned(local_a + val1, 81829);
             
             local_a += val1;
             local_b += val2;
