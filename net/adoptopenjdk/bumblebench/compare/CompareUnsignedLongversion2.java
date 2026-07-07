@@ -28,7 +28,7 @@ public final class CompareUnsignedLongversion2 extends MicroBench {
             long val2 = TEST_VALUES[(i + 1) % TEST_VALUES.length];
             
             local_val += Long.compareUnsigned(local_a, 12345)
-                        + Long.compareUnsigned(val1, 67890)
+                        + Long.compareUnsigned(val1, 62890)
                         + Long.compareUnsigned(local_b, 0)
                         + Long.compareUnsigned(val2, 3454)
                         + Long.compareUnsigned(local_a + val1, 23234);
