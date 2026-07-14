@@ -17,8 +17,8 @@ public final class CompareUnsignedInt extends MicroBench {
         
         for (int i = 0; i < numIterations; i++) {
             local_val += Integer.compareUnsigned(local_a | 0x01, local_a | 0x02)
-                       + Integer.compareUnsigned(local_a | 0x03, local_b | 0x04)
-                       + Integer.compareUnsigned(local_a | 0x05, i | 0x06)
+                       + Integer.compareUnsigned(local_a | 0x03, local_b | 0x04);
+            local_val += Integer.compareUnsigned(local_a | 0x05, i | 0x06)
                        + Integer.compareUnsigned(local_b | 0x07, local_a | 0x08)
                        + Integer.compareUnsigned(local_b | 0x09, local_b | 0x10);
             local_val += Integer.compareUnsigned(local_b | 0x11, i | 0x12)
@@ -27,8 +27,8 @@ public final class CompareUnsignedInt extends MicroBench {
                        + Integer.compareUnsigned(i | 0x17, i | 0x18)
                        + Integer.compareUnsigned(local_a | 0x19, local_a | 0x20);
             local_val += Integer.compareUnsigned(local_a | 0x21, local_b | 0x22)
-                       + Integer.compareUnsigned(local_a | 0x23, i | 0x24)
-                       + Integer.compareUnsigned(local_b | 0x25, local_a | 0x26)
+                       + Integer.compareUnsigned(local_a | 0x23, i | 0x24);
+            local_val += Integer.compareUnsigned(local_b | 0x25, local_a | 0x26)
                        + Integer.compareUnsigned(local_b | 0x27, local_b | 0x28)
                        + Integer.compareUnsigned(local_b | 0x29, i | 0x30);
             local_val += Integer.compareUnsigned(i | 0x31, local_a | 0x32)
@@ -37,8 +37,8 @@ public final class CompareUnsignedInt extends MicroBench {
                        + Integer.compareUnsigned(local_a | 0x37, local_a | 0x38)
                        + Integer.compareUnsigned(local_a | 0x39, local_b | 0x40);
             local_val += Integer.compareUnsigned(local_a | 0x41, i | 0x42)
-                       + Integer.compareUnsigned(local_b | 0x43, local_a | 0x44)
-                       + Integer.compareUnsigned(local_b | 0x45, local_b | 0x46)
+                       + Integer.compareUnsigned(local_b | 0x43, local_a | 0x44);
+            local_val += Integer.compareUnsigned(local_b | 0x45, local_b | 0x46)
                        + Integer.compareUnsigned(local_b | 0x47, i | 0x48)
                        + Integer.compareUnsigned(i | 0x49, local_a | 0x50);
             local_val += Integer.compareUnsigned(i | 0x51, local_b | 0x52)
@@ -48,8 +48,8 @@ public final class CompareUnsignedInt extends MicroBench {
                        + Integer.compareUnsigned(local_a | 0x59, i | 0x60);
             local_val += Integer.compareUnsigned(local_b | 0x61, local_a | 0x62)
                        + Integer.compareUnsigned(local_b | 0x63, local_b | 0x64)
-                       + Integer.compareUnsigned(local_b | 0x65, i | 0x66)
-                       + Integer.compareUnsigned(i | 0x67, local_a | 0x68)
+                       + Integer.compareUnsigned(local_b | 0x65, i | 0x66);
+            local_val += Integer.compareUnsigned(i | 0x67, local_a | 0x68)
                        + Integer.compareUnsigned(i | 0x69, local_b | 0x70);
             local_val += Integer.compareUnsigned(i | 0x71, i | 0x72)
                        + Integer.compareUnsigned(local_a | 0x73, local_a | 0x74)
@@ -62,8 +62,8 @@ public final class CompareUnsignedInt extends MicroBench {
                        + Integer.compareUnsigned(i | 0x87, local_b | 0x88)
                        + Integer.compareUnsigned(i | 0x89, i | 0x90);
             local_val += Integer.compareUnsigned(local_a | 0x91, local_a | 0x92)
-                       + Integer.compareUnsigned(local_a | 0x93, local_b | 0x94)
-                       + Integer.compareUnsigned(local_a | 0x95, i | 0x96)
+                       + Integer.compareUnsigned(local_a | 0x93, local_b | 0x94);
+            local_val += Integer.compareUnsigned(local_a | 0x95, i | 0x96)
                        + Integer.compareUnsigned(local_b | 0x97, local_a | 0x98)
                        + Integer.compareUnsigned(local_b | 0x99, local_b | 0x01);
             
