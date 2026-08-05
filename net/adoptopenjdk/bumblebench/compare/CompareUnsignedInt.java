@@ -13,6 +13,7 @@ public final class CompareUnsignedInt extends MicroBench {
     protected long doBatch(long numIterations) throws InterruptedException {
         int local_a = a; int local_a_inc = A_INC;
         int local_b = b; int local_b_inc = B_INC;
+        int local_value = value;
         
         for (int i = 0; i < numIterations; i++) {
             int temp = Integer.compareUnsigned(local_a | 0x01, local_b | 0x02);
@@ -68,11 +69,12 @@ public final class CompareUnsignedInt extends MicroBench {
             
             local_a += local_a_inc;
             local_b += local_b_inc;
+            local_value += temp;
         }
         
         a = local_a;
         b = local_b;
-        //value = temp;
+        value = local_value;
         
         return numIterations;
     }
