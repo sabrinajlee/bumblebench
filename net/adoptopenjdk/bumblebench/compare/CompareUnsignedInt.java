@@ -8,7 +8,7 @@ public final class CompareUnsignedInt extends MicroBench {
     private static final int A_INC = -5;
     private static final int B_INC = 15;
     private static volatile int value = 0;
-    private static int[] counts = new int[3];
+    private static long[] counts = new long[3];
 
     public static int record(int result) {
         counts[result+1]++;
@@ -85,9 +85,9 @@ public final class CompareUnsignedInt extends MicroBench {
     }
     public void run() {
         super.run();
-        System.out.println("Number of unsigned less than results == "+count[0]);
-        System.out.println("Number of unsigned equality results == "+count[1]);
-        System.out.println("Number of unsigned greater than results == "+count[2]);
+        System.out.println("Number of unsigned less than results == "+ counts[0]);
+        System.out.println("Number of unsigned equality results == "+ counts[1]);
+        System.out.println("Number of unsigned greater than results == "+ counts[2]);
     }
 
 }
