@@ -8,7 +8,13 @@ public final class CompareUnsignedInt extends MicroBench {
     private static final int A_INC = -5;
     private static final int B_INC = 15;
     private static volatile int value = 0;
+    private static int[] counts = new int[3];
 
+    public static int record(int result) {
+        counts[result+1]++;
+        return result;
+    }
+    
     @Override
     protected long doBatch(long numIterations) throws InterruptedException {
         int local_a = a; int local_a_inc = A_INC;
@@ -16,56 +22,56 @@ public final class CompareUnsignedInt extends MicroBench {
         int local_value = value;
 
         for (int i = 0; i < numIterations; i++) {
-            local_value = local_value + Integer.compareUnsigned(local_a | 0x01, local_b | 0x02);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x03, local_b | 0x04);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x05, local_b | 0x06);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x07, local_b | 0x08);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x09, local_b | 0x10);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x11, local_b | 0x12);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x13, local_b | 0x14);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x15, local_b | 0x16);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x17, local_b | 0x18);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x19, local_b | 0x20);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x21, local_b | 0x22);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x23, local_b | 0x24);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x25, local_b | 0x26);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x27, local_b | 0x28);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x29, local_b | 0x30);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x31, local_b | 0x32);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x33, local_b | 0x34);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x35, local_b | 0x36);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x37, local_b | 0x38);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x39, local_b | 0x40);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x41, local_b | 0x42);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x43, local_a | 0x44);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x45, local_b | 0x46);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x47, local_b | 0x48);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x49, local_b | 0x50);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x51, local_b | 0x52);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x53, local_b | 0x54);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x55, local_b | 0x56);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x57, local_b | 0x58);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x59, local_b | 0x60);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x61, local_b | 0x62);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x63, local_b | 0x64);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x65, local_b | 0x66);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x67, local_b | 0x68);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x69, local_b | 0x70);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x71, local_b | 0x72);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x73, local_b | 0x74);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x75, local_b | 0x76);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x77, local_b | 0x78);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x79, local_b | 0x80);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x81, local_b | 0x82);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x83, local_b | 0x84);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x85, local_b | 0x86);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x87, local_b | 0x88);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x89, local_b | 0x90);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x91, local_b | 0x92);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x93, local_b | 0x94);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x95, local_b | 0x96);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x97, local_b | 0x98);
-            local_value = local_value + Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x99, local_b | 0x01);
+            local_value = local_value + record(Integer.compareUnsigned(local_a | 0x01, local_b | 0x02));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x03, local_b | 0x04));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x05, local_b | 0x06));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x07, local_b | 0x08));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x09, local_b | 0x10));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x11, local_b | 0x12));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x13, local_b | 0x14));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x15, local_b | 0x16));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x17, local_b | 0x18));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x19, local_b | 0x20));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x21, local_b | 0x22));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x23, local_b | 0x24));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x25, local_b | 0x26));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x27, local_b | 0x28));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x29, local_b | 0x30));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x31, local_b | 0x32));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x33, local_b | 0x34));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x35, local_b | 0x36));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x37, local_b | 0x38));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x39, local_b | 0x40));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x41, local_b | 0x42));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x43, local_a | 0x44));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x45, local_b | 0x46));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x47, local_b | 0x48));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x49, local_b | 0x50));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x51, local_b | 0x52));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x53, local_b | 0x54));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x55, local_b | 0x56));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x57, local_b | 0x58));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x59, local_b | 0x60));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x61, local_b | 0x62));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x63, local_b | 0x64));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x65, local_b | 0x66));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x67, local_b | 0x68));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x69, local_b | 0x70));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x71, local_b | 0x72));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x73, local_b | 0x74));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x75, local_b | 0x76));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x77, local_b | 0x78));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x79, local_b | 0x80));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x81, local_b | 0x82));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x83, local_b | 0x84));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x85, local_b | 0x86));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x87, local_b | 0x88));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x89, local_b | 0x90));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x91, local_b | 0x92));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x93, local_b | 0x94));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x95, local_b | 0x96));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x97, local_b | 0x98));
+            local_value = local_value + record(Integer.compareUnsigned((local_a + (local_value >> 31)) | 0x99, local_b | 0x01));
 
             local_a += local_a_inc;
             local_b += local_b_inc;
@@ -76,6 +82,12 @@ public final class CompareUnsignedInt extends MicroBench {
         value = local_value;
 
         return numIterations;
+    }
+    public void run() {
+        super.run();
+        System.out.println("Number of unsigned less than results == "+count[0]);
+        System.out.println("Number of unsigned equality results == "+count[1]);
+        System.out.println("Number of unsigned greater than results == "+count[2]);
     }
 
 }
