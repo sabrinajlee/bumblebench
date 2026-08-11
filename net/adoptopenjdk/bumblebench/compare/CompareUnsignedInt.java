@@ -3,10 +3,10 @@ package net.adoptopenjdk.bumblebench.compare;
 import net.adoptopenjdk.bumblebench.core.MicroBench;
 
 public final class CompareUnsignedInt extends MicroBench {
-    private static volatile int a = option("a", -1);
-    private static volatile int b = option("b", 1);
-    private static final int A_INC = -5;
-    private static final int B_INC = 15;
+    private static volatile int a = option("a", 1000003);
+    private static volatile int b = option("b", 1000003);
+    private static final int A_INC = 1000003;
+    private static final int B_INC = 999983;
     private static volatile int value = 0;
 
     @Override
