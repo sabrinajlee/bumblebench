@@ -4,65 +4,70 @@ import net.adoptopenjdk.bumblebench.core.MicroBench;
 
 public final class CompareUnsignedInt extends MicroBench {
     private static volatile int value = 0;
+    private static volatile int b_init = 1;
+    private static final int A_INC = 0x9e3779b9; // large odd stride, covers 2^32 uniformly
 
     @Override
     protected long doBatch(long numIterations) throws InterruptedException {
-        int local_value = value;
+        int local_a = value;
+        int local_b = b_init;
 
         for (int i = 0; i < numIterations; i++) {
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x11111101, local_value | 0x22222202);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x33333303, local_value | 0x44444404);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x55555505, local_value | 0x66666606);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x77777707, local_value | 0x88888808);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x99999909, local_value | 0xAAAAA010);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xBBBBB111, local_value | 0xCCCCC212);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xDDDDD313, local_value | 0xEEEEE414);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xFFFFF515, local_value | 0x11111616);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x22222717, local_value | 0x33333818);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x44444919, local_value | 0x55555020);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x66666121, local_value | 0x77777222);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x88888323, local_value | 0x99999424);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xAAAAA525, local_value | 0xBBBBB626);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xCCCCC727, local_value | 0xDDDDD828);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xEEEEE929, local_value | 0xFFFFF030);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x11111131, local_value | 0x22222232);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x33333333, local_value | 0x44444434);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x55555535, local_value | 0x66666636);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x77777737, local_value | 0x88888838);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x99999939, local_value | 0xAAAAA040);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xBBBBB141, local_value | 0xCCCCC242);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xDDDDD343, local_value | 0xEEEEE444);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xFFFFF545, local_value | 0x11111646);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x22222747, local_value | 0x33333848);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x44444949, local_value | 0x55555050);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x66666151, local_value | 0x77777252);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x88888353, local_value | 0x99999454);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xAAAAA555, local_value | 0xBBBBB656);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xCCCCC757, local_value | 0xDDDDD858);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xEEEEE959, local_value | 0xFFFFF060);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x11111161, local_value | 0x22222262);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x33333363, local_value | 0x44444464);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x55555565, local_value | 0x66666666);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x77777767, local_value | 0x88888868);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x99999969, local_value | 0xAAAAA070);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xBBBBB171, local_value | 0xCCCCC272);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xDDDDD373, local_value | 0xEEEEE474);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xFFFFF575, local_value | 0x11111676);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x22222777, local_value | 0x33333878);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x44444979, local_value | 0x55555080);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x66666181, local_value | 0x77777282);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x88888383, local_value | 0x99999484);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xAAAAA585, local_value | 0xBBBBB686);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xCCCCC787, local_value | 0xDDDDD888);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0xEEEEE989, local_value | 0xFFFFF090);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x11111191, local_value | 0x22222292);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x33333393, local_value | 0x44444494);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x55555595, local_value | 0x66666696);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x77777797, local_value | 0x88888898);
-            local_value = local_value + Integer.compareUnsigned(local_value | 0x99999999, local_value | 0xAAAAA001);
+            local_a += Integer.compareUnsigned(local_a + 0x00000000, local_b + 0x11111111);
+            local_a += Integer.compareUnsigned(local_a + 0x22222222, local_b + 0x33333333);
+            local_a += Integer.compareUnsigned(local_a + 0x44444444, local_b + 0x55555555);
+            local_a += Integer.compareUnsigned(local_a + 0x66666666, local_b + 0x77777777);
+            local_a += Integer.compareUnsigned(local_a + 0x88888888, local_b + 0x99999999);
+            local_a += Integer.compareUnsigned(local_a + 0xAAAAAAAA, local_b + 0xBBBBBBBB);
+            local_a += Integer.compareUnsigned(local_a + 0xCCCCCCCC, local_b + 0xDDDDDDDD);
+            local_a += Integer.compareUnsigned(local_a + 0xEEEEEEEE, local_b + 0xFFFFFFFF);
+            local_a += Integer.compareUnsigned(local_a + 0x11111110, local_b + 0x22222221);
+            local_a += Integer.compareUnsigned(local_a + 0x33333332, local_b + 0x44444443);
+            local_a += Integer.compareUnsigned(local_a + 0x55555554, local_b + 0x66666665);
+            local_a += Integer.compareUnsigned(local_a + 0x77777776, local_b + 0x88888887);
+            local_a += Integer.compareUnsigned(local_a + 0x99999998, local_b + 0xAAAAAAAA);
+            local_a += Integer.compareUnsigned(local_a + 0xBBBBBBBA, local_b + 0xCCCCCCCC);
+            local_a += Integer.compareUnsigned(local_a + 0xDDDDDDDC, local_b + 0xEEEEEEEE);
+            local_a += Integer.compareUnsigned(local_a + 0xFFFFFFFE, local_b + 0x10000000);
+            local_a += Integer.compareUnsigned(local_a + 0x12345678, local_b + 0x23456789);
+            local_a += Integer.compareUnsigned(local_a + 0x3456789A, local_b + 0x456789AB);
+            local_a += Integer.compareUnsigned(local_a + 0x56789ABC, local_b + 0x6789ABCD);
+            local_a += Integer.compareUnsigned(local_a + 0x789ABCDE, local_b + 0x89ABCDEF);
+            local_a += Integer.compareUnsigned(local_a + 0x9ABCDEF0, local_b + 0xABCDEF01);
+            local_a += Integer.compareUnsigned(local_a + 0xBCDEF012, local_b + 0xCDEF0123);
+            local_a += Integer.compareUnsigned(local_a + 0xDEF01234, local_b + 0xEF012345);
+            local_a += Integer.compareUnsigned(local_a + 0xF0123456, local_b + 0x01234567);
+            local_a += Integer.compareUnsigned(local_a + 0x13579BDF, local_b + 0x2468ACE0);
+            local_a += Integer.compareUnsigned(local_a + 0x3579BDF1, local_b + 0x468ACE02);
+            local_a += Integer.compareUnsigned(local_a + 0x579BDF13, local_b + 0x68ACE024);
+            local_a += Integer.compareUnsigned(local_a + 0x79BDF135, local_b + 0x8ACE0246);
+            local_a += Integer.compareUnsigned(local_a + 0x9BDF1357, local_b + 0xACE02468);
+            local_a += Integer.compareUnsigned(local_a + 0xBDF13579, local_b + 0xCE02468A);
+            local_a += Integer.compareUnsigned(local_a + 0xDF13579B, local_b + 0xE02468AC);
+            local_a += Integer.compareUnsigned(local_a + 0xF13579BD, local_b + 0x02468ACE);
+            local_a += Integer.compareUnsigned(local_a + 0x02468ACF, local_b + 0x13579BE0);
+            local_a += Integer.compareUnsigned(local_a + 0x2468ACF1, local_b + 0x3579BE02);
+            local_a += Integer.compareUnsigned(local_a + 0x468ACF13, local_b + 0x579BE024);
+            local_a += Integer.compareUnsigned(local_a + 0x68ACF135, local_b + 0x79BE0246);
+            local_a += Integer.compareUnsigned(local_a + 0x8ACF1357, local_b + 0x9BE02468);
+            local_a += Integer.compareUnsigned(local_a + 0xACF13579, local_b + 0xBE02468A);
+            local_a += Integer.compareUnsigned(local_a + 0xCF13579B, local_b + 0xE02468AC);
+            local_a += Integer.compareUnsigned(local_a + 0xF13579BD, local_b + 0x02468ACF);
+            local_a += Integer.compareUnsigned(local_a + 0x19283746, local_b + 0x2A394857);
+            local_a += Integer.compareUnsigned(local_a + 0x3B4A5968, local_b + 0x4C5B6A79);
+            local_a += Integer.compareUnsigned(local_a + 0x5D6C7B8A, local_b + 0x6E7D8C9B);
+            local_a += Integer.compareUnsigned(local_a + 0x7F8E9DAC, local_b + 0x809FAEBF);
+            local_a += Integer.compareUnsigned(local_a + 0x91A0BFD0, local_b + 0xA2B1C0E1);
+            local_a += Integer.compareUnsigned(local_a + 0xB3C2D1F2, local_b + 0xC4D3E203);
+            local_a += Integer.compareUnsigned(local_a + 0xD5E4F314, local_b + 0xE6F50425);
+            local_a += Integer.compareUnsigned(local_a + 0xF7061536, local_b + 0x08172647);
+            local_a += Integer.compareUnsigned(local_a + 0x19283758, local_b + 0x2A394869);
+            local_a += Integer.compareUnsigned(local_a + 0x3B4A597A, local_b + 0x4C5B6A8B);
+            local_b += A_INC;
         }
 
-        value = local_value;
+        value = local_a;
+        b_init = local_b;
 
         return numIterations;
     }
