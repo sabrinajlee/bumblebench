@@ -14,6 +14,13 @@ public final class CompareUnsignedInt extends MicroBench {
         counts[result+1]++;
         return result;
     }
+
+    public void run() {
+        super.run();
+        System.out.println("Number of unsigned less than results == "+ counts[0]);
+        System.out.println("Number of unsigned equality results == "+ counts[1]);
+        System.out.println("Number of unsigned greater than results == "+ counts[2]);
+    }
     
     @Override
     protected long doBatch(long numIterations) throws InterruptedException {
@@ -77,12 +84,6 @@ public final class CompareUnsignedInt extends MicroBench {
         value = local_value;
 
         return numIterations;
-    }
-    public void run() {
-        super.run();
-        System.out.println("Number of unsigned less than results == "+ counts[0]);
-        System.out.println("Number of unsigned equality results == "+ counts[1]);
-        System.out.println("Number of unsigned greater than results == "+ counts[2]);
     }
 
 }
