@@ -15,6 +15,21 @@ public final class CompareUnsignedInt extends MicroBench {
     private static volatile int value = 0;
     private static volatile int a = 0xFFFFFFFF;
 
+    private static long[] counts = new long[3];
+
+    public static int record(int result) {
+        counts[result + 1]++;
+        return result;
+    }
+
+    @Override
+    public void run() {
+        super.run();
+        System.out.println("Number of unsigned less than results == " + counts[0]);
+        System.out.println("Number of unsigned equality results == " + counts[1]);
+        System.out.println("Number of unsigned greater than results == " + counts[2]);
+    }
+
     @Override
     protected long doBatch(long numIterations) throws InterruptedException {
         final int[] vals = VALUES;
@@ -23,56 +38,56 @@ public final class CompareUnsignedInt extends MicroBench {
 
         for (int i = 0; i < numIterations; i++) {
             int temp = 0;
-            temp += Integer.compareUnsigned(local_a, vals[ i        % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  1)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  2)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  3)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  4)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  5)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  6)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  7)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  8)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  9)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 10)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 11)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 12)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 13)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 14)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 15)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[ i        % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  1)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  2)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  3)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  4)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  5)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  6)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  7)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  8)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  9)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 10)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 11)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 12)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 13)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 14)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 15)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[ i        % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  1)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  2)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  3)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  4)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  5)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  6)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  7)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  8)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  9)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 10)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 11)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 12)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 13)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 14)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 15)  % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[ i        % 15]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  1)  % 15]);
+            temp += record(Integer.compareUnsigned(local_a, vals[ i        % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  1)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  2)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  3)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  4)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  5)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  6)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  7)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  8)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  9)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 10)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 11)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 12)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 13)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 14)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 15)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[ i        % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  1)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  2)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  3)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  4)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  5)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  6)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  7)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  8)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  9)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 10)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 11)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 12)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 13)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 14)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 15)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[ i        % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  1)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  2)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  3)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  4)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  5)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  6)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  7)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  8)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  9)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 10)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 11)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 12)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 13)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 14)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i + 15)  % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[ i        % 15]));
+            temp += record(Integer.compareUnsigned(local_a, vals[(i +  1)  % 15]));
             local_val += temp;
             local_a += 0x9e3779b9;
         }
