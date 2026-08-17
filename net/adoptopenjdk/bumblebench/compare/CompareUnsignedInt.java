@@ -3,7 +3,6 @@ package net.adoptopenjdk.bumblebench.compare;
 import net.adoptopenjdk.bumblebench.core.MicroBench;
 
 public final class CompareUnsignedInt extends MicroBench {
-    private static volatile int a = option("a", -1);
     private static volatile int b = option("b", 1);
     private static final int A_INC = -5;
     private static final int B_INC = 15;
@@ -72,7 +71,6 @@ public final class CompareUnsignedInt extends MicroBench {
             local_value += temp;
         }
         
-        a = temp;
         b = local_b;
         value = local_value;
         
