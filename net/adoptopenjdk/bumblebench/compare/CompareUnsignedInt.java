@@ -15,7 +15,7 @@ public final class CompareUnsignedInt extends MicroBench {
         int local_value = value;
         
         for (int i = 0; i < numIterations; i++) {
-            int temp = Integer.compareUnsigned(temp | 0x01, local_b | 0x02);
+            int temp = Integer.compareUnsigned(local_b | 0x01, local_b | 0x02);
             temp = temp + Integer.compareUnsigned(temp | 0x03, local_b | 0x04);
             temp = temp + Integer.compareUnsigned(temp | 0x05, local_b | 0x06);
             temp = temp + Integer.compareUnsigned(temp | 0x07, local_b | 0x08);
