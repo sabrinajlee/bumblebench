@@ -13,11 +13,13 @@ public final class CompareUnsignedInt extends MicroBench {
     };
 
     private static volatile int value = 0;
+    private static volatile int a = 0xFFFFFFFF;
 
     @Override
     protected long doBatch(long numIterations) throws InterruptedException {
         final int[] vals = VALUES;
         int local_val = value;
+        int local_a = a;
 
         for (int i = 0; i < numIterations; i++) {
             int temp = 0;
@@ -72,6 +74,7 @@ public final class CompareUnsignedInt extends MicroBench {
             temp += Integer.compareUnsigned(local_a, vals[ i        % 15]);
             temp += Integer.compareUnsigned(local_a, vals[(i +  1)  % 15]);
             local_val += temp;
+            local_a += 0x9e3779b9;
         }
 
         value = local_val;
