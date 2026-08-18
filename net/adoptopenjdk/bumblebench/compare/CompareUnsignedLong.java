@@ -3,17 +3,17 @@ package net.adoptopenjdk.bumblebench.compare;
 import net.adoptopenjdk.bumblebench.core.MicroBench;
 
 public final class CompareUnsignedLong extends MicroBench {
-    // 16 values evenly spaced across the full unsigned int range.
+    // 16 values evenly spaced across the full unsigned long range.
     // Power-of-2 length so (i + k) & 0x0F is a single AND, no division.
     private static final long[] VALUES = {
-        0x00000000, 0x11111111, 0x22222222, 0x33333333,
-        0x44444444, 0x55555555, 0x66666666, 0x77777777,
-        0x88888888, 0x99999999, 0xAAAAAAAA, 0xBBBBBBBB,
-        0xCCCCCCCC, 0xDDDDDDDD, 0xEEEEEEEE, 0xFFFFFFFF
+        0x0000000000000000L, 0x1111111111111111L, 0x2222222222222222L, 0x3333333333333333L,
+        0x4444444444444444L, 0x5555555555555555L, 0x6666666666666666L, 0x7777777777777777L,
+        0x8888888888888888L, 0x9999999999999999L, 0xAAAAAAAAAAAAAAAAL, 0xBBBBBBBBBBBBBBBBL,
+        0xCCCCCCCCCCCCCCCCL, 0xDDDDDDDDDDDDDDDDL, 0xEEEEEEEEEEEEEEEEL, 0xFFFFFFFFFFFFFFFFL
     };
 
     private static volatile int value = 0;
-    private static volatile long a = 0xFFFFFFFF;
+    private static volatile long a = 0xFFFFFFFFFFFFFFFFL;
 
     @Override
     protected long doBatch(long numIterations) throws InterruptedException {
@@ -73,7 +73,7 @@ public final class CompareUnsignedLong extends MicroBench {
             temp += Long.compareUnsigned(local_a, vals[(i + 15)  & 0x0F]);
             temp += Long.compareUnsigned(local_a, vals[ i        & 0x0F]);
             local_val += temp;
-            local_a += 0x9e3779b9;
+            local_a += 0x9e3779b97f4a7c15L;
         }
 
         value = local_val;
