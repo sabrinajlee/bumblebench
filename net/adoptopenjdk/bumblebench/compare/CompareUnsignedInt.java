@@ -6,8 +6,8 @@ public final class CompareUnsignedInt extends MicroBench {
     // 16 values evenly spaced across the full unsigned int range.
     // Power-of-2 length so (i + k) & 0x0F is a single AND, no division.
     private static final int[] VALUES = {
-        0x00000000, 0x11111111, 0x22222222, 0x33333333,
-        0x44444444, 0x55555555, 0x66666666, //0x77777777,
+        0x00000000, 0x11111111, 0xFFFFFFFF, //0x33333333,
+        //0x44444444, 0x55555555, 0x66666666, 0x77777777,
         // 0x88888888, 0x99999999, 0xAAAAAAAA, 0xBBBBBBBB,
         // 0xCCCCCCCC, 0xDDDDDDDD, 0xEEEEEEEE, 0xFFFFFFFF
     };
@@ -23,13 +23,9 @@ public final class CompareUnsignedInt extends MicroBench {
 
         for (int i = 0; i < numIterations; i++) {
             int temp = 0;
-            temp += Integer.compareUnsigned(local_a, vals[ i        & 0x06]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  1)  & 0x06]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  2)  & 0x06]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  3)  & 0x06]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  4)  & 0x06]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  5)  & 0x06]);
-            temp += Integer.compareUnsigned(local_a, vals[(i +  6)  & 0x06]);
+            temp += Integer.compareUnsigned(local_a, vals[ i        & 0x02]);
+            temp += Integer.compareUnsigned(local_a, vals[(i +  1)  & 0x02]);
+            temp += Integer.compareUnsigned(local_a, vals[(i +  2)  & 0x02]);
             local_val += temp;
             local_a += 0x9e3779b9;
         }
