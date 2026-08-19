@@ -33,8 +33,6 @@ public final class CompareUnsignedInt extends MicroBench {
             temp += Integer.compareUnsigned(local_a, vals[(i +  7)  & 0x0F]);
             temp += Integer.compareUnsigned(local_a, vals[(i +  8)  & 0x0F]);
             temp += Integer.compareUnsigned(local_a, vals[(i +  9)  & 0x0F]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 10)  & 0x0F]);
-            temp += Integer.compareUnsigned(local_a, vals[(i + 11)  & 0x0F]);
             local_val += temp;
             local_a += 0x9e3779b9;
         }
